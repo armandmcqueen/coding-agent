@@ -6,6 +6,8 @@ app = typer.Typer()
 console = Console()
 c = Context()
 c.config.run.echo = True
+c.config.run.pty = True
+
 
 # pylint: disable=pointless-exception-statement
 # pylint: disable=inconsistent-return-statements
@@ -16,6 +18,8 @@ def run(cmd):
     except Exception:
         console.print(f"[red]Error during '{cmd}'[/red]")
         typer.Abort()
+
+
 # pylint: enable=pointless-exception-statement
 # pylint: enable=inconsistent-return-statements
 
@@ -32,6 +36,7 @@ def flit_publish():
 
 @app.command()
 def fmt():
+    run("uv run isort src")
     run("uv run ruff format")
 
 
@@ -39,15 +44,21 @@ def fmt():
 def lint():
     run("uv run ruff check")
 
+
 @app.command(help="Run all linters including slow pylint")
 def lint_full():
     run("uv run ruff check")
-    run("uv run pylint cli.py")
     run("uv run pylint src")
+
 
 @app.command()
 def typecheck():
     run("uv run mypy src")
+
+
+@app.command()
+def test():
+    run("uv run pytest -n auto src")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,2 @@
+- Create a python function that generates a list of all the triangle numbers up to n.
+https://claude.ai/chat/e67148c9-25f5-4288-8908-2640c913cfd8

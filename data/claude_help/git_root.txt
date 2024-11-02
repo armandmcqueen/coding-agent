@@ -1,0 +1,7 @@
+- Help me write code that finds the git root of the current file in python
+
+https://claude.ai/chat/27005b2f-ff4f-4757-b6b8-a7e183ee47de
+
+- Needed to correct the first incorrect example
+- Had to install a new dependency (claude was wrong, we use uv)
+- Iterative process, all code is in the chat.
